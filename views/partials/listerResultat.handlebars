@@ -1,0 +1,10 @@
+<h1>Liste des resultat</h1>
+<div id="circuit">
+    <table class="tabpayscir">
+        {{#each listReultats}}
+            <tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" width="32px" height="32px" />
+                <a href="/listerResultat/detailResultat/{{this.gpnum}}"> {{this.gpnom}}</a>
+            </td></tr>
+        {{/each}}
+    </table>
+    <br class="myboth" />

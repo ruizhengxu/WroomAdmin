@@ -1,0 +1,9 @@
+<div id="circuit">
+<table class="tabpayscir">
+    {{#each listCircuits}}
+        <tr><td><img src="/image/pays/{{this.payadrdrap}}" alt="drapeau du pays" width="32px" height="32px" />
+            <a href="/listerCircuit/detailCircuit/{{this.cirnom}}"> {{this.cirnom}}</a>
+        </td></tr>
+    {{/each}}
+</table>
+<br class="myboth" />

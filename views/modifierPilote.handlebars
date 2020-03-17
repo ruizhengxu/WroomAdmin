@@ -1,0 +1,100 @@
+<div  id="center">
+
+    <h2>Modifer un pilote</h2>
+
+</div>
+
+<form action="/pilotes/ajouter/ajout" method="POST">
+    <div class="champs">
+        <div class="label">
+            <label for="prenom">Prénom</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="text" name="prenom" size="20" value="{{this.pilprenom}}">
+        {{/each}}
+
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="nom">Nom</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="text" name="nom" size="20" value="{{this.pilnom}}">
+        {{/each}}
+
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="datenais">Date de naissance</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="date" name="datenais"  value="{{this.pildatenais}}">
+        {{/each}}
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="nationalite">Nationalité</label>
+        </div>
+        <select name="nationalite">
+            {{#each detailPilote}}
+                <option value="{{this.paynum}}">{{this.paynat}}</option>
+            {{/each}}
+            {{#each listeNationalites}}
+                <option value="{{this.paynum}}">{{this.paynat}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+    <div class="champs">
+        <div class="label">
+            <label for="ecurie">Ecurie</label>
+        </div>
+        <select name="ecurie">
+            {{#each detailPilote}}
+                <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+            {{/each}}
+            {{#each listeEcuries}}
+                <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="points">Points</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="text" name="points" size="10"  value="{{this.pilpoints}}">pts
+        {{/each}}
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="poids">Poids</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="text" name="poids" size="6"  value="{{this.pilpoids}}">kg
+        {{/each}}
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="taille">Taille</label>
+        </div>
+        {{#each detailPilote}}
+            <input type="text" name="taille" size="6"  value="{{this.piltaille}}">cm
+        {{/each}}
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="description">Description</label>
+        </div>
+        {{#each detailPilote}}
+            <textarea name="description"  style="height:50px; width: 50%">{{this.piltexte}}</textarea>
+        {{/each}}
+
+    </div>
+
+    <div id="add_form_button">
+        <button type="submit" form="form1" value="Submit">AJOUTER</button>
+    </div>
+
+</form>
+<br class="myboth" />

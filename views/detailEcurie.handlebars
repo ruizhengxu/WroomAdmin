@@ -1,0 +1,61 @@
+{{> listerEcurie}}
+
+<div>
+    {{#each detailEcurie}}
+        <div id="base">
+            <div id="photo"> <img src="/image/ecurie/{{this.ecuadresseimage}}" height="200px" width="200px"></div>
+            <div id="information">
+                <div id="nom"> <p> <span>Nom : </span> {{this.ecunom}}</p> </div>
+                <div id="identite">
+                    <div id="infos">
+                        <p><span>Directeur : </span> {{this.ecunomdir}}</p>
+                        <p><span>Adresse : </span> {{this.ecuadrsiege}}</p>
+                        <p><span>Pays : </span> {{this.paynom}}</p>
+                        {{#if this.fpnom}}
+                            <p><span>Fournisseur de pneumatique : </span> {{this.fpnom}}</p>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    {{#if pilotes}}
+            <p><span>Pilotes : </span></p>
+        <div>
+        {{#each pilotes}}
+                <p><a href="/repertoirePilote/detailPilote/{{this.pilnum}}">
+                    <div class="tooltip">{{this.pilprenom}}  {{this.pilnom}}
+                        <div class="tooltiptext"><div><img src="/image/pilote/{{this.phoadresse}}" height="80px" width="80px"></div><div><h4>{{this.pilprenom}}  {{this.pilnom}}</h4> <p>{{this.texte}} ...</p></div>
+            </div>
+
+            </div>
+
+            </a></p>
+        {{/each}}
+        </div>
+        <div id="voitures">
+            {{#each voitures}}
+                <div>
+                    <img src="/image/ecurie/voiture/{{this.voiadresseimage}}" height="150px" width="150px">
+                    <p>{{this.voinom}}</p>
+                    <p>{{this.typelibelle}}</p>
+
+                </div>
+
+
+            {{/each}}
+
+        </div>
+    {{else}}
+        <p>Cette écurie ne participe pas au championnat cette année</p>
+    {{/if}}
+
+
+
+</div>
+</div>
+
+
+
+

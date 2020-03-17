@@ -1,0 +1,31 @@
+{{> listerCircuit}}
+
+<div>
+    {{#each detailCircuit}}
+        <div id="base">
+            <div id="photo"> <img src="/image/circuit/{{this.ciradresseimage}}" height="200px" width="200px"></div>
+            <div id="information">
+                <div id="nom"> <p> <span>Nom : </span> {{this.cirnom}}</p> </div>
+                <div id="identite">
+                    <div id="infos">
+                        <p><span>Longueur : </span> {{this.cirlongueur}}</p>
+                        <p><span>Nombre de spectateur : </span> {{this.cirnbspectateurs}}</p>
+                        <p><span>Pays : </span> {{this.paynom}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+</div>
+    <div id="qui">
+        <p>
+            {{#each detailCircuit}}
+                {{this.cirtext}}
+            {{/each}}
+        </p>
+    </div>
+
+
+
+

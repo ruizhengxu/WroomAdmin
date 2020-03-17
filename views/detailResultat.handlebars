@@ -1,0 +1,35 @@
+{{> listerResultat}}
+
+<div>
+        <table>
+            <tr>
+                <th>Place</th>
+                <th>Pilote</th>
+                <th>Temps</th>
+                <th>Nb points</th>
+            </tr>
+            {{#each detailResultat}}
+                <tr>
+                    <td>
+                        {{@key}}
+                    </td>
+                    <td>{{this.pilnom}} {{this.pilprenom}}</td>
+                    <td>{{this.tempscourse}}</td>
+                    <td>{{@key}}</td>
+                </tr>
+            {{/each}}
+
+        </table>
+</div>
+</div>
+<div id="qui">
+    <p>
+        {{#each detailCircuit}}
+            {{this.cirtext}}
+        {{/each}}
+    </p>
+</div>
+
+
+
+

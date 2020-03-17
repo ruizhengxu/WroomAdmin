@@ -1,0 +1,43 @@
+{{> repertoirePilotes}}
+<div  id="center">
+
+    <p>{{this.pilnom}}</p>
+    {{#each detailPilote}}
+        <div id="base">
+            <div id="photo"> <img src="/image/pilote/{{this.phoadresse}}" height="84px" width="84px"></div>
+            <div id="information">
+                <div id="nom"> <p> <span>Nom : </span> {{this.pilnom}} {{this.pilprenom}}</p> </div>
+                <div id="identite">
+                    <div id="infos">
+                        <p><span>Date de naissance : </span> {{formatDate this.pildatenais 'DD MMMM YYYY' }}</p>
+                        <p><span>Nationalité : </span> {{this.paynom}}</p>
+                        <p><span>Ecurie : </span> {{this.ecunom}}</p>
+                    </div>
+                    <div id="specifique">
+                        <p><span>Poids : </span> {{this.pilpoids}} Kg</p>
+                        <p><span>Taille : </span> {{this.piltaille}} Cm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    <div id="sponsors">
+        <p><span>{{existeSponsor}} </span></p>
+        {{#each sponsors}}
+            <p><span>{{this.sponom}}</span> ({{this.sposectactivite}})</p>
+        {{/each}}
+    </div>
+    <div id="qui">
+        <p><span>Qui suis je : </span>
+        {{#each detailPilote}}
+            {{this.piltexte}}
+        {{/each}}
+            </p>
+    </div>
+    <div id="photos">
+        {{#each photos}}
+            <a href="/image/pilote/{{this.phoadresse}}" data-lightbox="myphotos" data-title="{{this.phosujet}}" data-commentaire="{{this.phocommentaire}}"  ><img src="/image/pilote/{{this.phoadresse}}"></a>
+        {{/each}}
+    </div>
+
+</div>
