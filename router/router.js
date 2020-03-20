@@ -70,6 +70,11 @@ app.post('/auth', function (req, res) {
 
     app.get('/pilotes/modifier/:num', PiloteController.ModifierPilote);
 
+    app.post('/pilotes/modifier/modif/:num', PiloteController.EssaiModifPilote);
+
+    app.get('/pilotes/supprimer/:num', PiloteController.SupprimerPilote);
+
+    app.get('/pilotes/supprimer/suppression/:num', PiloteController.EssaiSuppressionPilote);
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
 

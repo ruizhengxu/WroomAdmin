@@ -1,0 +1,36 @@
+<div  id="center">
+
+    <h2>Supprimer un pilote</h2>
+
+</div>
+
+<div style="width: fit-content">
+    <table align="center">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Nationalité</th>
+            <th>Poids</th>
+            <th>Taille</th>s
+        </tr>
+        <tr>
+            {{#each detailPilote}}
+                <td>{{this.pilnom}}</td>
+                <td>{{this.pilprenom}}</td>
+                <td>{{formatDate this.pildatenais 'DD/MM/YYYY' }}</td>
+                <td>{{this.paynat}}</td>
+                <td>{{this.pilpoids}}</td>
+                <td>{{this.piltaille}}</td>
+            {{/each}}
+        </tr>
+
+    </table>
+    <div id="supp_buttons">
+        <a href="/pilotes/supprimer/suppression/{{num}}"><button>Supprimer</button></a>
+        <a href="/pilotes"><button id="annuler">Annuler</button></a>
+    </div>
+</div>
+
+
+<br class="myboth" />

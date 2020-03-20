@@ -4,7 +4,8 @@
 
 </div>
 
-<form action="/pilotes/ajouter/ajout" method="POST">
+
+<form action="/pilotes/modifier/modif/{{num}}" method="POST">
     <div class="champs">
         <div class="label">
             <label for="prenom">Prénom</label>
@@ -28,7 +29,7 @@
             <label for="datenais">Date de naissance</label>
         </div>
         {{#each detailPilote}}
-            <input type="date" name="datenais"  value="{{this.pildatenais}}">
+            <input type="date" name="datenais"  value="{{formatDate this.pildatenais 'YYYY-MM-DD'}}">
         {{/each}}
     </div>
     <div class="champs">
@@ -93,7 +94,7 @@
     </div>
 
     <div id="add_form_button">
-        <button type="submit" form="form1" value="Submit">AJOUTER</button>
+        <input type="submit" value="Modifier">
     </div>
 
 </form>

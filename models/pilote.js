@@ -100,6 +100,34 @@ module.exports.ajouterPilote = function (data, callback) {
     });
 };
 
+module.exports.modifierPilote = function (data, ajouter , callback) {
+    // connection à la base
+
+    db.getConnection(function(err, connexion){
+        if(!err){
+            // s'il n'y a pas d'erreur de connexion
+            // execution de la requête SQL
+
+
+            let sql ="UPDATE pilote set " +
+                "pilnom = '"+ data.nom +"', " +
+                "pilprenom = '" + data.prenom + "', " +
+                "PILDATENAIS = '" + data.datenais + "', " +
+                "paynum = " + data.nationalite + ", " +
+                "ecunum = " + data.ecurie + ", " +
+                "pilpoints = " + data.points + ", " +
+                "pilpoids = " + data.poids + ", " +
+                "piltaille = " + data.taille + ", " +
+                "piltexte = '" + data.description + "' " +
+                "WHERE pilnum = " + ajouter ;
+            console.log(sql);
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+        }
+    });
+};
 
 
 module.exports.getDetailPilote = function (data, callback) {
@@ -109,7 +137,7 @@ module.exports.getDetailPilote = function (data, callback) {
         if(!err){
             // s'il n'y a pas d'erreur de connexion
             // execution de la requête SQL
-            let sql ="SELECT pi.paynum as paynum,pilnom,pilprenom,pildatenais,pilpoints,pilpoids,piltaille,piltexte,pi.ecunum as ecunum,paynat,ecunom FROM pilote pi JOIN pays pa ON pi.PAYNUM = pa.PAYNUM JOIN ecurie e ON e.ECUNUM = pi.ECUNUM WHERE pilnum = " + data ;
+            let sql ="SELECT pi.paynum as paynum,pilnom,pilprenom,pildatenais,pilpoints,pilpoids,piltaille,piltexte,pi.ecunum as ecunum,paynat,ecunom FROM pilote pi JOIN pays pa ON pi.PAYNUM = pa.PAYNUM LEFT JOIN ecurie e ON e.ECUNUM = pi.ECUNUM WHERE pilnum = " + data ;
             console.log (sql);
             connexion.query(sql, callback);
 
@@ -118,6 +146,26 @@ module.exports.getDetailPilote = function (data, callback) {
         }
     });
 };
+
+
+
+module.exports.supprimerPilote = function (data, callback) {
+    // connection à la base
+
+    db.getConnection(function(err, connexion){
+        if(!err){
+            // s'il n'y a pas d'erreur de connexion
+            // execution de la requête SQL
+
+            let sql ="DELETE FROM pilote WHERE pilnum = " + data ;
+            connexion.query(sql, callback);
+
+            // la connexion retourne dans le pool
+            connexion.release();
+        }
+    });
+};
+
 
 module.exports.getSponsors = function (data, callback) {
     // connection à la base
