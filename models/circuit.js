@@ -6,6 +6,10 @@
 */
 
 let db = require('../configDb');
+var formidable = require('formidable'),
+    util = require('util'),
+    fs = require('fs-extra'),
+    path = require('path');
 
 /*
 * Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
@@ -17,7 +21,7 @@ module.exports.getListeCircuits= function (callback) {
         if(!err){
             // s'il n'y a pas d'erreur de connexion
             // execution de la requête SQL
-            let sql ="SELECT cirnum, cirnom, payadrdrap FROM circuit c JOIN pays p ON c.PAYNUM = p.PAYNUM ORDER BY CIRNOM ASC";
+            let sql ="SELECT cirnum, cirnom, cirlongueur, cirnbspectateurs FROM circuit";
             //console.log (sql);
             connexion.query(sql, callback);
 
@@ -26,20 +30,76 @@ module.exports.getListeCircuits= function (callback) {
         }
     });
 };
+
+module.exports.getListePays = function (callback) {
+    db.getConnection(function (err, connection) {
+        if (!err) {
+            let sql = "select paynum, paynom from pays order by paynom";
+
+            connection.query(sql, callback);
+            connection.release();
+        }
+    })
+}
 
 module.exports.getDetailCircuit = function (data, callback) {
-    // connection à la base
-    db.getConnection(function(err, connexion){
-        if(!err){
-            // s'il n'y a pas d'erreur de connexion
-            // execution de la requête SQL
-            let sql ="SELECT cirnum, cirnom, cirlongueur, cirnbspectateurs,ciradresseimage,paynom, cirtext " +
-                "FROM circuit c JOIN pays p ON c.PAYNUM = p.PAYNUM WHERE CIRNOM = '" + data + "'";
-            //console.log (sql);
-            connexion.query(sql, callback);
+    db.getConnection(function (err, connection) {
+        if (!err) {
+            let sql = "SELECT cirnom, cirlongueur, c.paynum, paynom, ciradresseimage, cirnbspectateurs, cirtext FROM circuit c JOIN pays p ON p.paynum = c.paynum WHERE c.cirnum = " + data;
+            //console.log(sql);
+            connection.query(sql, callback);
+            connection.release();
+        }
+    })
+}
 
-            // la connexion retourne dans le pool
+module.exports.ajouterCircuit = function (data, callback) {
+    db.getConnection(function (err, connection) {
+        if (!err) {
+            var form = new formidable.IncomingForm();
+            form.parse(data, function (err, fields, files) {
+                // Ajout du circuit dans BD
+                var values  = '(' + fields.pays + ',' + " '" + fields.nom + "'";
+                if (fields.longueur != '') {
+                    values += ', ' + fields.longueur;
+                } else {
+                    values += ', null';
+                }
+                if (fields.nbspectateurs !=  '') {
+                    values += ', ' + fields.nbspectateurs;
+                } else {
+                    values += ', null';
+                }
+                values += ", '" + files.upload.name + "', '" + fields.description + "')";
+                let sql = "insert into circuit (paynum, cirnom, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) values " + values;
+                connection.query(sql, callback);
+
+                // Ajout d'image
+                if (files.upload.name != '') {
+                    var oldpath = files.upload.path;
+                    var newpath = path.dirname(require.main.filename) + '/public/image/circuit/' + files.upload.name;
+                    fs.rename(oldpath, newpath, function (err) {
+                        if (err) throw err;
+                        console.log('File uploaded and moved!');
+                    });
+                }
+
+                connection.release();
+            });
+        }
+    })
+}
+
+module.exports.modifierCircuit = function (data, callback) {
+}
+
+module.exports.supprimerCircuit = function (data, callback) {
+    db.getConnection( function (err, connexion) {
+        if (!err) {
+            let sql = "delete from circuit where cirnum = " + data;
+            //console.log(sql);
+            connexion.query(sql, callback);
             connexion.release();
         }
-    });
-};
+    })
+}

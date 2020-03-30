@@ -30,7 +30,7 @@
 		font-size:0.8em;
 		text-align:center;
 		height:150px;
-		background:url(/image/footer.jpg) no-repeat;
+		background:url(	/image/footer.jpg) no-repeat;
     }
 	#menu a	{
 		color:#ffffff;
@@ -47,7 +47,7 @@
  	  float:right;
  	  padding:10px;
  	  border:1px solid black;
- 	  margin:10px
+ 	  margin:10px;
  	  -moz-border-radius:15px;
  	  border-radius:15px;
  }
@@ -59,7 +59,12 @@
  	text-decoration:none;
  	color:#0072ff;
  }
- .lienNotFound {align:center; style="background-color: #1d81b1;color: #FFFFFF;text-transform: uppercase;"}
+ .lienNotFound {
+	 align:center;
+	 background-color: #1d81b1;
+	 color: #FFFFFF;
+	 text-transform: uppercase;
+ }
  .photoNotFound {
    max-height: 40%;
    max-width: 40%;
@@ -93,7 +98,7 @@ table a{
 }
 
 .label {
-	width: 15%;
+	width: 20%;
 }
 
 .champs input,textarea,select{

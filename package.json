@@ -11,12 +11,16 @@
         "express": "^4.17.1",
         "express-handlebars": "^3.1.0",
         "express-session": "~1.17",
+        "formidable": "^1.2.2",
+        "fs-extra": "^9.0.0",
         "global": "^4.4.0",
         "moment": "^2.24.0",
         "mysql": "^2.18.1",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
-        "unidecode": "^0.1.8"
+        "path": "^0.12.7",
+        "unidecode": "^0.1.8",
+        "util": "^0.12.2"
     },
     "devDependencies": {
         "nodemon": "^2.0.2"

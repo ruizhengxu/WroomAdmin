@@ -1,0 +1,55 @@
+<div  id="center">
+
+    <h2>Modifier un circuit</h2>
+
+</div>
+
+<form action="/circuits/modifier/modif" method="post" enctype="multipart/form-data">
+    <div class="champs">
+        <div class="label">
+            <label for="nom">Nom</label>
+        </div>
+        <input type="text" name="nom" size="20" value="{{circuit.cirnom}}">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="longueur">Longueur</label>
+        </div>
+        <input type="text" name="longueur" size="10" style="margin-right: 3px" value="{{circuit.cirlongueur}}">m
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="pays">Pays</label>
+        </div>
+        <select name="pays">
+            <option value="{{circuit.paynum}}">{{circuit.paynom}}</option>
+            {{#each listePays}}
+                    <option value="{{this.paynum}}">{{this.paynom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="image">Image</label>
+        </div>
+        <input style="border: none" type="file" name="upload">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="nbspectateurs">Nombre de spectateurs</label>
+        </div>
+        <input type="text" name="nbspectateurs" size="10" style="margin-right: 3px" value="{{circuit.cirnbspectateurs}}">personnes
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="description">Description</label>
+        </div>
+        <textarea name="description"  style="height:50px; width: 50%">{{circuit.cirtext}}</textarea>
+    </div>
+
+    <div id="add_form_button">
+        <button type="submit">MODIFIER</button>
+    </div>
+
+</form>
+<br class="myboth" />

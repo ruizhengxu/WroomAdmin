@@ -263,7 +263,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`LOGIN`, `PASSWD`) VALUES
-('admin', 'e49bc78ff2167431810af8c46225b4ac9b6de4c1b5ca87acf9273359089becb548a499ae5748480797fd52dfddee64a8511a1602a93e0d8116778e6b6086a77938a933a87446c361923c608c7868c83844e26c34543676e096df7feb6f95581a284cdd925c21aae2623618bae62f9bcf9c58');
+('admin', '2d3768cf2841eb143d11a23ddd2a88be4b91');
 
 -- --------------------------------------------------------
 

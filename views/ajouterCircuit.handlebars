@@ -1,0 +1,55 @@
+<div  id="center">
+
+    <h2>Ajouter un circuit</h2>
+
+</div>
+
+<form action="/circuits/ajouter/ajout" method="post" enctype="multipart/form-data">
+    <div class="champs">
+        <div class="label">
+            <label for="nom">Nom</label>
+        </div>
+
+        <input type="text" name="nom" size="20">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="longueur">Longueur</label>
+        </div>
+        <input type="text" name="longueur" size="10" style="margin-right: 3px">m
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="pays">Pays</label>
+        </div>
+        <select name="pays">
+            {{#each listePays}}
+                <option value="{{this.paynum}}">{{this.paynom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="image">Image</label>
+        </div>
+        <input style="border: none" type="file" name="upload">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="nbspectateurs">Nombre de spectateurs</label>
+        </div>
+        <input type="text" name="nbspectateurs" size="10" style="margin-right: 3px">personnes
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="description">Description</label>
+        </div>
+        <textarea name="description"  style="height:50px; width: 50%"></textarea>
+    </div>
+
+    <div id="add_form_button">
+        <button type="submit">AJOUTER</button>
+    </div>
+
+</form>
+<br class="myboth" />

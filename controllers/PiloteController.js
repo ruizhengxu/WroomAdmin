@@ -77,6 +77,7 @@ module.exports.AjouterPilote = function(request, response){
 module.exports.EssaiAjoutPilote = function(request, response){
     var sess = request.session;
     console.log(sess.connecter);
+    console.log('Ajouter un nouveau pilote');
     if (sess.connecter != null){
 
         async.parallel([

@@ -1,0 +1,27 @@
+<div  id="center">
+    
+    <img src="/image/cat_circuit.png" alt="circuit">
+    <h2>Gestion des Pilotes</h2>
+    <a href="/circuits/ajouter"><img src="/image/act_add.png" alt="add"> Ajouter un circuit</a>
+
+    <table align="center">
+        <tr>
+            <th>Nom</th>
+            <th>Longueur</th>
+            <th>Nombre de spéctateurs</th>
+            <th>Actions</th>
+        </tr>
+        {{#each listeCircuits}}
+            <tr>
+                <td>{{this.cirnom}}</td>
+                <td>{{this.cirlongueur}}</td>
+                <td>{{this.cirnbspectateurs}}</td>
+                <td><a href="/circuits/modifier/{{this.cirnum}}"><img src="/image/act_edit.png"> Modifier     </a><a href="/circuits/supprimer/{{this.cirnum}}"><img src="/image/act_delete.png"> Supprimer</a></td>
+            </tr>
+        {{/each}}
+
+    </table>
+
+</div>
+
+<br class="myboth" />

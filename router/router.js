@@ -36,11 +36,9 @@ app.post('/auth', function (req, res) {
 
                     let Cryptr = require('cryptr');
                     let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF');
-                    console.log(cryptr.encrypt("TakeTheLongWayHome"));
                     const motDepasse = results[0].passwd;
                     console.log(motDepasse);
                     console.log(cryptr.decrypt(motDepasse));
-                    console.log(req.body.password);
                     if(cryptr.decrypt(motDepasse) === req.body.password){
                         console.log('Enter');
                         sess.connecter = true;
@@ -73,7 +71,16 @@ app.post('/auth', function (req, res) {
  // circuits
    app.get('/circuits', CircuitController.ListerCircuit);
 
-    app.get('/listerCircuit/detailCircuit/:nom', CircuitController.DetailPilote);
+   app.get('/circuits/ajouter', CircuitController.AjouterCircuit);
+
+   app.post('/circuits/ajouter/ajout', CircuitController.EssaiAjouterCircuit);
+
+   app.get('/circuits/modifier/:num', CircuitController.ModifierCircuit);
+
+   app.post('/circuits/modifier/modif', CircuitController.EssaiModifierCircuit);
+
+   app.get('/circuits/supprimer/:num', CircuitController.SupprimerCircuit);
+
 
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);
