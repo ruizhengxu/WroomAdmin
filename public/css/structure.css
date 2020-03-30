@@ -104,6 +104,8 @@ table a{
 .champs input,textarea,select{
 	border: 1px solid;
 	border-radius: 10px;
+	padding: 3px;
+	margin-right: 5px;
 }
 
 #add_form_button{
@@ -111,10 +113,31 @@ table a{
 	text-align: center;
 }
 
-button{
+
+#add_form_button input{
 	padding: 5px;
 	padding-left: 10px;
 	padding-right: 10px;
 	background-image: linear-gradient(#cc0000, #ff0000);
+	color: #dddddd;
+}
+button {
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-image: linear-gradient(#cc0000, #ff0000);
+	color: #dddddd;
+}
+
+#supp_buttons{
+	margin-top: 10px;
+	text-align: center;
+}
+
+#annuler {
+	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-image: linear-gradient(#4bcc00, #30ff4b);
 	color: #dddddd;
 }
