@@ -9,6 +9,7 @@ let db = require('../configDb');
 var formidable = require('formidable'),
     util = require('util'),
     fs = require('fs-extra'),
+    alert = require('alert-node'),
     path = require('path');
 
 /*
@@ -78,9 +79,9 @@ module.exports.ajouterCircuit = function (data, callback) {
                 if (files.upload.name != '') {
                     var oldpath = files.upload.path;
                     var newpath = path.dirname(require.main.filename) + '/public/image/circuit/' + files.upload.name;
+                    newpath = newpath.replace("WroomAdmin", "Wroom");
                     fs.rename(oldpath, newpath, function (err) {
                         if (err) throw err;
-                        console.log('File uploaded and moved!');
                     });
                 }
 
@@ -124,9 +125,18 @@ module.exports.modifierCircuit = function (data, cirnum, callback) {
 module.exports.supprimerCircuit = function (data, callback) {
     db.getConnection( function (err, connexion) {
         if (!err) {
-            let sql = "delete from circuit where cirnum = " + data;
-            //console.log(sql);
-            connexion.query(sql, callback);
+            let sql = "select * from grandprix where cirnum = " + data;
+            // console.log(sql);
+            connexion.query(sql, function(err, results){
+                if (err){
+                    throw err;
+                }
+                if (results[0] == undefined) {
+                    connexion.query("delete from circuit where cirnum = " + data, callback);
+                } else {
+                    alert("Ce circuit ne peut pas être supprimé !");
+                }
+            });
             connexion.release();
         }
     })

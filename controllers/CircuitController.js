@@ -121,6 +121,7 @@ module.exports.SupprimerCircuit = function (request, response) {
                 return;
             }
         });
+        response.redirect('/circuits');
     } else {
         response.redirect('/');
     }
