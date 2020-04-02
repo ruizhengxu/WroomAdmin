@@ -90,7 +90,35 @@ module.exports.ajouterCircuit = function (data, callback) {
     })
 }
 
-module.exports.modifierCircuit = function (data, callback) {
+module.exports.modifierCircuit = function (data, cirnum, callback) {
+    db.getConnection(function (err, connection) {
+        if (!err) {
+            var form = new formidable.IncomingForm();
+            form.parse(data, function (err, fields, files) {
+                // Modification du circuit dans BD
+                let sql = "update circuit set cirnom = '" + fields.nom + "', cirlongueur = " + fields.longueur +
+                    ", paynum = " + fields.pays + ", cirnbspectateurs = " + fields.nbspectateurs + ", cirtext = '" + fields.description + "'";
+
+                // Ajout d'image si le nom n'est pas vide
+                if (files.upload.name != '') {
+                    sql += ", ciradresseimage = '" + files.upload.name + "'";
+                    var oldpath = files.upload.path;
+                    // On place l'image dans le répertoire de Wroom
+                    var newpath = path.dirname(require.main.filename) + '/public/image/circuit/' + files.upload.name;
+                    newpath = newpath.replace("WroomAdmin", "Wroom");
+                    fs.rename(oldpath, newpath, function (err) {
+                        if (err) throw err;
+                    });
+                }
+
+                sql += " where cirnum = " + cirnum;
+
+                console.log(sql);
+                connection.query(sql, callback);
+                connection.release();
+            });
+        }
+    })
 }
 
 module.exports.supprimerCircuit = function (data, callback) {

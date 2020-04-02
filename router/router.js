@@ -5,11 +5,7 @@ let EcurieController = require('./../controllers/EcurieController');
 let PiloteController = require('./../controllers/PiloteController');
 let CircuitController = require('./../controllers/CircuitController');
 
-
-
 // Routes
-
-
 module.exports = function(app, passport){
 
     /*app.post('/auth', passport.authenticate(
@@ -82,7 +78,7 @@ app.post('/auth', function (req, res) {
 
    app.get('/circuits/modifier/:num', CircuitController.ModifierCircuit);
 
-   app.post('/circuits/modifier/modif', CircuitController.EssaiModifierCircuit);
+   app.post('/circuits/modifier/modif/:num', CircuitController.EssaiModifierCircuit);
 
    app.get('/circuits/supprimer/:num', CircuitController.SupprimerCircuit);
 

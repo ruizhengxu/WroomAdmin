@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="65ad1856-33b9-4178-bc8d-c8e5509ccc44">
-        <schema name="grandprix" object-types="function, view, table, procedure, column" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="65ad1856-33b9-4178-bc8d-c8e5509ccc44">
