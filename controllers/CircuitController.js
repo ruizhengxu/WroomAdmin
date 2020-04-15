@@ -57,6 +57,7 @@ module.exports.EssaiAjouterCircuit = function(request, response) {
                 return;
             }
         });
+        response.redirect('/circuits');
     } else {
         response.redirect('/');
     }
@@ -104,6 +105,7 @@ module.exports.EssaiModifierCircuit = function(request, response) {
                 return;
             }
         });
+        response.redirect('/circuits');
     } else {
         response.redirect('/');
     }

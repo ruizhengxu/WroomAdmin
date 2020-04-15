@@ -60,6 +60,7 @@ module.exports.ajouterCircuit = function (data, callback) {
             var form = new formidable.IncomingForm();
             form.parse(data, function (err, fields, files) {
                 // Ajout du circuit dans BD
+                let description = fields.description.replace(/'/g, "''");
                 var values  = '(' + fields.pays + ',' + " '" + fields.nom + "'";
                 if (fields.longueur != '') {
                     values += ', ' + fields.longueur;
@@ -71,7 +72,7 @@ module.exports.ajouterCircuit = function (data, callback) {
                 } else {
                     values += ', null';
                 }
-                values += ", '" + files.upload.name + "', '" + fields.description + "')";
+                values += ", '" + files.upload.name + "', '" + description + "')";
                 let sql = "insert into circuit (paynum, cirnom, cirlongueur, cirnbspectateurs, ciradresseimage, cirtext) values " + values;
                 connection.query(sql, callback);
 
@@ -116,7 +117,7 @@ module.exports.modifierCircuit = function (data, cirnum, callback) {
 
                 sql += " where cirnum = " + cirnum;
 
-                console.log(sql);
+                //console.log(sql);
                 connection.query(sql, callback);
                 connection.release();
             });
