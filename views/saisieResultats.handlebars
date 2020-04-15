@@ -1,0 +1,49 @@
+<div  id="center">
+
+    <h2>Saisie des résultats</h2>
+
+    <table align="center">
+        <tr>
+            <th></th>
+            <th>Place</th>
+            <th>Pilote</th>
+            <th>Temps</th>
+            <th>Points</th>
+        </tr>
+        {{#each listeResultats}}
+            <tr>
+                <td><a href="/resultats/suppression/{{this.gpnum}}/{{this.pilnum}}"><img src="/image/act_delete.png"></a></td>
+                <td>{{this.place}}</td>
+                <td>{{this.pilnom}}</td>
+                <td>{{this.tempscourse}}</td>
+                <td>{{this.points}}</td>
+            </tr>
+        {{/each}}
+        {{#ifCond nouveauNum.numero '<' 11}}
+            <form action="/resultats/ajout/{{grandprix}}" method="post">
+                <tr>
+                    <td>{{nouveauNum.numero}}</td>
+                    <td>
+                       <select name="pilote">
+                           {{#each listePilotes}}
+                               <option value="{{this.pilnum}}">{{this.pilnom}}</option>
+                           {{/each}}
+                       </select>
+                    </td>
+                    <td>
+                        <div class="champs">
+                            <input name="heure" style="width: 25px" type="number" min="0" step="1"> : <input name="minute" style="width: 25px; margin-left: 4px" type="number" min="0" max="60" step="1"> : <input name="seconde" style="width: 25px; margin-left: 4px"  type="number" min="0" max="60" step="1">
+                        </div>
+                    </td>
+                    <td colspan="2">
+                        <div id="add_form_button">
+                            <button type="submit">OK</button>
+                        </div>
+                    </td>
+                </tr>
+            </form>
+        {{/ifCond}}
+    </table>
+</div>
+
+<br class="myboth" />

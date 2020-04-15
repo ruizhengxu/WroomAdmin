@@ -82,16 +82,21 @@ app.post('/auth', function (req, res) {
 
    app.get('/circuits/supprimer/:num', CircuitController.SupprimerCircuit);
 
-
 // Ecuries
    app.get('/ecuries', EcurieController.ListerEcurie);
 
-    app.get('/ecuries/detailEcurie/:nom', EcurieController.DetailEcurie);
+   app.get('/ecuries/detailEcurie/:nom', EcurieController.DetailEcurie);
 
  //Résultats
-   app.get('/resultats', ResultatController.ListerResultat);
+   app.get('/resultats', ResultatController.ListerGrandPrxi);
 
-    app.get('/listerResultat/detailResultat/:nom', ResultatController.DetailResultat);
+   app.get('/resultats/saisie', ResultatController.SaisieResultats);
+
+   app.get('/resultats/suppression/:gpnum/:pilnum', ResultatController.EssaiSuppressionResultats);
+
+   app.post('/resultats/ajout/:num', ResultatController.EssaiAjoutResultats);
+
+    //app.get('/listerResultat/detailResultat/:nom', ResultatController.DetailResultat);
 
     app.get('/retour', function (request, response) {
         request.logOut();

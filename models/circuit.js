@@ -96,10 +96,12 @@ module.exports.modifierCircuit = function (data, cirnum, callback) {
         if (!err) {
             var form = new formidable.IncomingForm();
             form.parse(data, function (err, fields, files) {
+                // On récupère la description en prenant en compte les apostrophes
+                var cirtext = fields.description;
+                cirtext = cirtext.replace(/'/g, "''");
                 // Modification du circuit dans BD
                 let sql = "update circuit set cirnom = '" + fields.nom + "', cirlongueur = " + fields.longueur +
-                    ", paynum = " + fields.pays + ", cirnbspectateurs = " + fields.nbspectateurs + ", cirtext = '" + fields.description + "'";
-
+                    ", paynum = " + fields.pays + ", cirnbspectateurs = " + fields.nbspectateurs + ", cirtext = '" + cirtext + "'";
                 // Ajout d'image si le nom n'est pas vide
                 if (files.upload.name != '') {
                     sql += ", ciradresseimage = '" + files.upload.name + "'";
