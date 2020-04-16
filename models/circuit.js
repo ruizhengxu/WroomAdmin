@@ -41,7 +41,7 @@ module.exports.getListePays = function (callback) {
             connection.release();
         }
     })
-}
+};
 
 module.exports.getDetailCircuit = function (data, callback) {
     db.getConnection(function (err, connection) {

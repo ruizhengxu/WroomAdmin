@@ -111,7 +111,7 @@ var handlebars  = require('./helpers/handlebars.js')(exphbs); //emplacement des 
 app.engine('handlebars', handlebars.engine);
 
 // chargement du routeur
-require('./router/router')(app,passport);
+require('./router/router')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Serveur Node.js en attente sur le port ' + app.get('port'));

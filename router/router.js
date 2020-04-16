@@ -4,6 +4,7 @@ let ResultatController = require('./../controllers/ResultatController');
 let EcurieController = require('./../controllers/EcurieController');
 let PiloteController = require('./../controllers/PiloteController');
 let CircuitController = require('./../controllers/CircuitController');
+let SponsorController = require('./../controllers/SponsorController');
 
 // Routes
 module.exports = function(app, passport){
@@ -82,10 +83,32 @@ app.post('/auth', function (req, res) {
 
    app.get('/circuits/supprimer/:num', CircuitController.SupprimerCircuit);
 
-// Ecuries
-   app.get('/ecuries', EcurieController.ListerEcurie);
 
-   app.get('/ecuries/detailEcurie/:nom', EcurieController.DetailEcurie);
+// Ecuries
+   app.get('/ecuries', EcurieController.ListerEcuries);
+
+    app.get('/ecuries/ajouter', EcurieController.AjouterEcurie);
+
+    app.post('/ecuries/ajouter/ajout', EcurieController.EssaiAjouterEcurie);
+
+    app.get('/ecuries/modifier/:num', EcurieController.ModifierEcurie);
+
+    app.post('/ecuries/modifier/modif/:num', EcurieController.EssaiModifierEcurie);
+
+    app.get('/ecuries/supprimer/:num', EcurieController.SupprimerEcurie);
+
+// Sponsor
+    app.get('/sponsors', SponsorController.ListerSponsors);
+
+    app.get('/sponsors/ajouter', SponsorController.AjouterSponsor);
+
+    app.post('/sponsors/ajouter/ajout', SponsorController.EssaiAjouterSponsor);
+
+    app.get('/sponsors/modifier/:num', SponsorController.ModifierSponsor);
+
+    app.post('/sponsors/modifier/modif/:num', SponsorController.EssaiModifierSponsor);
+
+    app.get('/sponsors/supprimer/:num', SponsorController.SupprimerSponsor);
 
  //Résultats
    app.get('/resultats', ResultatController.ListerGrandPrxi);

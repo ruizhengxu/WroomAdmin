@@ -1,0 +1,25 @@
+<div  id="center">
+    
+    <img src="/image/cat_sponsor.png" alt="sponsor">
+    <h2>Gestion des sponsors</h2>
+    <a href="/sponsors/ajouter"><img src="/image/act_add.png" alt="add"> Ajouter une écurie</a>
+
+    <table align="center">
+        <tr>
+            <th>Nom</th>
+            <th>Activite</th>
+            <th>Actions</th>
+        </tr>
+        {{#each listeSponsor}}
+            <tr>
+                <td>{{this.sponom}}</td>
+                <td>{{this.sposectactivite}}</td>
+                <td><a href="/sponsors/modifier/{{this.sponum}}"><img src="/image/act_edit.png"> Modifier     </a><a href="/sponsors/supprimer/{{this.sponum}}"><img src="/image/act_delete.png"> Supprimer</a></td>
+            </tr>
+        {{/each}}
+
+    </table>
+
+</div>
+
+<br class="myboth" />

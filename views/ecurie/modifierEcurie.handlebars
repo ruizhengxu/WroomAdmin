@@ -1,0 +1,56 @@
+<div  id="center">
+
+    <h2>Modifier un écurie</h2>
+
+</div>
+
+<form action="/ecuries/modifier/modif/{{num}}" method="post" enctype="multipart/form-data">
+    <div class="champs">
+        <div class="label">
+            <label for="nom">Nom</label>
+        </div>
+
+        <input type="text" name="nom" size="20" value="{{ecurie.ecunom}}">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="directeur">Directeur</label>
+        </div>
+        <input type="text" name="directeur" size="20" style="margin-right: 3px" value="{{ecurie.ecunomdir}}">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="adresse">Adresse du siège</label>
+        </div>
+        <textarea name="adresse"  style="height:50px; width: 50%">{{ecurie.ecuadrsiege}}</textarea>
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="points">Points</label>
+        </div>
+        <input type="text" name="points" size="10" style="margin-right: 3px" value="{{ecurie.ecupoints}}">pts
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="pays">Pays</label>
+        </div>
+        <select name="pays">
+            <option value="{{ecurie.paynum}}">{{ecurie.paynom}}</option>
+            {{#each listePays}}
+                <option value="{{this.paynum}}">{{this.paynom}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="image">Image</label>
+        </div>
+        <input style="border: none" type="file" name="upload">
+    </div>
+
+    <div id="add_form_button">
+        <button type="submit">MODIFIER</button>
+    </div>
+
+</form>
+<br class="myboth" />

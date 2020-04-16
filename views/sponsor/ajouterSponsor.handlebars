@@ -1,0 +1,39 @@
+<div  id="center">
+
+    <h2>Ajouter un circuit</h2>
+
+</div>
+
+<form action="/sponsors/ajouter/ajout" method="post" enctype="multipart/form-data">
+    <div class="champs">
+        <div class="label">
+            <label for="nom">Nom</label>
+        </div>
+
+        <input type="text" name="nom" size="20">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="activite">Secteur d'activite</label>
+        </div>
+        <input type="text" name="activite" size="20" style="margin-right: 3px">
+    </div>
+    <div class="champs">
+        <div class="label">
+            <label for="ecurie">Ecurie sponsorisee</label>
+        </div>
+        <select name="ecurie">
+            <option value="NULL">Aucune</option>
+            {{#each listeEcuries}}
+                <option value="{{this.ecunum}}">{{this.ecunom}}</option>
+            {{/each}}
+        </select>
+    </div>
+
+
+    <div id="add_form_button">
+        <button type="submit">AJOUTER</button>
+    </div>
+
+</form>
+<br class="myboth" />

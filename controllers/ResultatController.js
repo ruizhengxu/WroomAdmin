@@ -42,7 +42,7 @@ module.exports.SaisieResultats = function(request, response) {
 			response.listePilotes = result[1];
 			response.nouveauNum = result[2][0];
 			response.grandprix = data;
-			//console.log(result[0]);
+			console.log(response);
 			response.render('saisieResultats', response);
 		}
 	)
@@ -53,7 +53,7 @@ module.exports.EssaiSuppressionResultats = function (request, response) {
 	let pilnum = request.params.pilnum;
 	model.supprimerResultat(gpnum, pilnum, function (err, result) {
 		if (err) {
-			// gestion de l'erreur
+			// gestion de l'erreurce
 			console.log(err);
 			return;
 		}

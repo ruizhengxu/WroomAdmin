@@ -1,21 +1,20 @@
 let async = require('async');
-let model = require('../models/ecurie.js');
+let model = require('../models/sponsor.js');
 // ////////////////////// L I S T E R     E C U R I E S
-module.exports.ListerEcuries = function(request, response){
+module.exports.ListerSponsors = function(request, response){
 
     var sess = request.session;
 
     if (sess.connecter != null) {
         response.title = 'Liste des ecuries';
-        model.getListeEcurie( function (err, result) {
+        model.getListesSponsor( function (err, result) {
             if (err) {
                 // gestion de l'erreur
                 console.log(err);
                 return;
             }
-            response.listeEcuries = result;
-            console.log(result);
-            response.render('ecurie/listerEcurie', response);
+            response.listeSponsor = result;
+            response.render('sponsor/listerSponsor', response);
         });
     } else {
         response.redirect('/');
@@ -23,14 +22,14 @@ module.exports.ListerEcuries = function(request, response){
 };
 
 
-module.exports.AjouterEcurie = function(request, response) {
+module.exports.AjouterSponsor = function(request, response) {
 
     var sess = request.session;
     if (sess.connecter != null) {
-        response.title = "Ajouter un écurie";
+        response.title = "Ajouter un sponsor";
         async.parallel([
                 function (callback) {
-                    model.getListePays(function (err, result) { callback(null, result)});
+                    model.getListesEcurie(function (err, result) { callback(null, result)});
                 },
             ],
             function (err, resultat) {
@@ -38,8 +37,8 @@ module.exports.AjouterEcurie = function(request, response) {
                     console.log(err);
                     return;
                 }
-                response.listePays = resultat[0];
-                response.render('ecurie/ajouterEcurie', response);
+                response.listeEcuries = resultat[0];
+                response.render('sponsor/ajouterSponsor', response);
             }
         )
     } else {
@@ -47,35 +46,35 @@ module.exports.AjouterEcurie = function(request, response) {
     }
 }
 
-module.exports.EssaiAjouterEcurie = function(request, response) {
+module.exports.EssaiAjouterSponsor = function(request, response) {
     var sess = request.session;
     console.log(sess.connecter);
     if (sess.connecter != null) {
-        model.ajouterEcurie(request, function (err, result) {
+        console.log(request.body);
+        model.ajouterSponsor(request, function (err, result) {
             if (err) {
                 // gestion de l'erreur
                 console.log(err);
                 return;
             }
-
-            response.redirect('/ecuries')
+            response.redirect('/sponsors');
         });
     } else {
         response.redirect('/');
     }
-}
+};
 
-module.exports.ModifierEcurie = function(request, response) {
+module.exports.ModifierSponsor = function(request, response) {
     var sess = request.session;
     if (sess.connecter != null) {
-        let ecunum = request.params.num;
+        let sponum = request.params.num;
         response.title = "Modifier un écurie";
         async.parallel([
                 function (callback) {
-                    model.getListePays(function (err, result) { callback(null, result)});
+                    model.getDetailSponsor(sponum, function (err, result) { callback(null, result)});
                 },
                 function (callback) {
-                    model.getDetailEcurie(ecunum, function (err, result) { callback(null, result)});
+                    model.getListesEcurie(function (err, result) { callback(null, result)});
                 },
             ],
             function (err, resultat) {
@@ -83,11 +82,11 @@ module.exports.ModifierEcurie = function(request, response) {
                     console.log(err);
                     return;
                 }
-                response.listePays = resultat[0];
-                response.ecurie = resultat[1][0];
-                response.num = ecunum;
-                console.log(resultat[1][0]);
-                response.render('ecurie/modifierEcurie', response);
+
+                response.sponsor = resultat[0][0];
+                response.num = sponum;
+                response.listeEcuries = resultat[1];
+                response.render('sponsor/modifierSponsor', response);
             }
         )
     } else {
@@ -95,37 +94,43 @@ module.exports.ModifierEcurie = function(request, response) {
     }
 }
 
-module.exports.EssaiModifierEcurie = function(request, response) {
+module.exports.EssaiModifierSponsor = function(request, response) {
     var sess = request.session;
     console.log(sess.connecter);
     if (sess.connecter != null) {
-        let ecunum = request.params.num;
-        model.modifierEcurie(request,ecunum, function (err, result) {
-            if (err) {
-                // gestion de l'erreur
-                console.log(err);
-                return;
+        let sponum = request.params.num;
+        async.parallel([
+                function (callback) {
+                    model.modifierSponsor(request, sponum , (function (errPil, resultPil) {callback(null, resultPil) }));
+                },
+            ],
+            function (err, resultat) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+
+                response.redirect('/sponsors');
             }
-        });
-        response.redirect('/ecuries');
+        )
     } else {
         response.redirect('/');
     }
 }
 
-module.exports.SupprimerEcurie = function (request, response) {
+module.exports.SupprimerSponsor = function (request, response) {
     var sess = request.session;
     console.log(sess.connecter);
     if (sess.connecter != null) {
         let data = request.params.num;
-        model.supprimerEcurie(data, function (err, result) {
+        model.supprimerSponsor(data, function (err, result) {
             if (err) {
                 // gestion de l'erreur
                 console.log(err);
                 return;
             }
         });
-        response.redirect('/ecuries');
+        response.redirect('/sponsors');
     } else {
         response.redirect('/');
     }
