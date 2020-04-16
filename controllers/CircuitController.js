@@ -56,8 +56,6 @@ module.exports.EssaiAjouterCircuit = function(request, response) {
                 console.log(err);
                 return;
             }
-
-            response.redirect('/circuits');
         });
         response.redirect('/circuits');
     } else {
