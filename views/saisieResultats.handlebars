@@ -12,7 +12,7 @@
         </tr>
         {{#each listeResultats}}
             <tr>
-                <td><a href="/resultats/suppression/{{this.gpnum}}/{{this.pilnum}}"><img src="/image/act_delete.png"></a></td>
+                <td><a onclick="supprimer({{this.gpnum}}, {{this.pilnum}})"><img src="/image/act_delete.png"></a></td>
                 <td>{{this.place}}</td>
                 <td>{{this.pilnom}}</td>
                 <td>{{this.tempscourse}}</td>
@@ -47,3 +47,11 @@
 </div>
 
 <br class="myboth" />
+
+<script>
+    function supprimer(gpnum, pilnum) {
+        if (confirm("Voulez-vous supprimer cette ligne ?") == true) {
+            window.location.href = "/resultats/suppression/" + gpnum + "/" + pilnum;
+        }
+    }
+</script>

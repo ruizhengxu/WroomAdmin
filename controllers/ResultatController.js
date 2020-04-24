@@ -42,7 +42,7 @@ module.exports.SaisieResultats = function(request, response) {
 			response.listePilotes = result[1];
 			response.nouveauNum = result[2][0];
 			response.grandprix = data;
-			console.log(response);
+			//console.log(response);
 			response.render('saisieResultats', response);
 		}
 	)

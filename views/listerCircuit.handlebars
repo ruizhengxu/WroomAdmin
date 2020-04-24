@@ -16,7 +16,7 @@
                 <td>{{this.cirnom}}</td>
                 <td>{{this.cirlongueur}}</td>
                 <td>{{this.cirnbspectateurs}}</td>
-                <td><a href="/circuits/modifier/{{this.cirnum}}"><img src="/image/act_edit.png"> Modifier     </a><a href="/circuits/supprimer/{{this.cirnum}}"><img src="/image/act_delete.png"> Supprimer</a></td>
+                <td><a href="/circuits/modifier/{{this.cirnum}}"><img src="/image/act_edit.png"> Modifier     </a><a onclick="supprimer({{this.cirnum}})"><img src="/image/act_delete.png"> Supprimer</a></td>
             </tr>
         {{/each}}
 
@@ -25,3 +25,11 @@
 </div>
 
 <br class="myboth" />
+
+<script>
+    function supprimer(cirnum) {
+        if (confirm("Voulez-vous vraiment supprimer ce circuit ?") == true) {
+            window.location.href = '/circuits/supprimer/' + cirnum;
+        }
+    }
+</script>
