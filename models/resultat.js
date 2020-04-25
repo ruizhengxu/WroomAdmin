@@ -135,10 +135,21 @@ module.exports.ajoutResultat = function(gpnum, data, callback) {
                     seconde = "0" + seconde;
                 }
                 let temps = heure + ":" + minute + ":" + seconde;
+                let check = "select tempscourse from course where gpnum = " + gpnum + " and pilnum = " + data.pilote;
+
                 let sql = "insert into course (gpnum, pilnum, tempscourse) values(" + gpnum + ", " + data.pilote + ", '" + temps + "')";
                 //console.log(sql);
-                // Exécution
-                connexion.query(sql, callback);
+                // Si le joueur a déjà un temps dans cette course alors on exécute pas l'insertion
+                connexion.query(check, function (err, result) {
+                    if (err) {
+                        throw err;
+                    }
+                    if (result[0] == undefined) {
+                        connexion.query(sql, callback);
+                    } else {
+                        alert("Ce pilote a déjà un temps pour cette course !");
+                    }
+                });
                 // la connexion retourne dans le pool
                 connexion.release();
             }
