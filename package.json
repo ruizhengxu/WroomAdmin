@@ -18,7 +18,7 @@
         "formidable": "^1.2.2",
         "fs-extra": "^9.0.0",
         "global": "^4.4.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "mysql": "^2.18.1",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
